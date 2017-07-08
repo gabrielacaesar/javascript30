@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>JS Drum Kit solved by Gabriela Caesar</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+  <div class="keys">
+    <div data-key="65" class="key">
+      <kbd>G</kbd>
+      <span class="sound">gente boa</span>
+    </div>
+    <div data-key="83" class="key">
+      <kbd>A</kbd>
+      <span class="sound">legal</span>
+    </div>
+    <div data-key="68" class="key">
+      <kbd>B</kbd>
+      <span class="sound">justa</span>
+    </div>
+    <div data-key="70" class="key">
+      <kbd>R</kbd>
+      <span class="sound">parceira</span>
+    </div>
+    <div data-key="71" class="key">
+      <kbd>I</kbd>
+      <span class="sound">honesta</span>
+    </div>
+    <div data-key="72" class="key">
+      <kbd>E</kbd>
+      <span class="sound">capaz</span>
+    </div>
+    <div data-key="74" class="key">
+      <kbd>L</kbd>
+      <span class="sound">ética</span>
+    </div>
+    <div data-key="75" class="key">
+      <kbd>A</kbd>
+      <span class="sound">emotiva</span>
+    </div>
+    <div data-key="76" class="key">
+      <kbd>:)</kbd>
+      <span class="sound">racional</span>
+    </div>
+  </div>
+
+  <audio data-key="65" src="sounds/clap.wav"></audio>
+  <audio data-key="83" src="sounds/hihat.wav"></audio>
+  <audio data-key="68" src="sounds/kick.wav"></audio>
+  <audio data-key="70" src="sounds/openhat.wav"></audio>
+  <audio data-key="71" src="sounds/boom.wav"></audio>
+  <audio data-key="72" src="sounds/ride.wav"></audio>
+  <audio data-key="74" src="sounds/snare.wav"></audio>
+  <audio data-key="75" src="sounds/tom.wav"></audio>
+  <audio data-key="76" src="sounds/tink.wav"></audio>
+
+<script>
+
+window.addEventListener('keydown', function(e){
+ const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+ const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+
+ if(!audio) return;
+  audio.currentTime = 0
+  audio.play();
+  key.classList.add('playing');
+});
+
+
+const keys = document.querySelectorAll('.key');
+keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+
+function removeTransition(e) {
+  if(e.propertyName !== 'transform') return;
+  this.classList.remove('playing');
+}
+
+// i have decided not to make the last changes of the tutorial - 18min30sec //
+
+</script>
+
+
+</body>
+</html>
